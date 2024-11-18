@@ -6,7 +6,7 @@
 /*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:06:49 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/18 13:09:35 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:48:28 by mskhairi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ void	key(t_data *data)
 	t_coor next;
 	next = data->player.coor;
     mlx_get_mouse_pos(data->mlx, &data->mouse_position.x, &data->mouse_position.y);
-	if ((mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || data->tmp_p_mouse <= data->mouse_position.x - 20))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT) 
+    if (!(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) || !(data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT))
+        mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+	if ((mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || data->tmp_p_mouse <= data->mouse_position.x - 12))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT) 
 	{
 		data->player.angle = ft_normalizer(data->player.angle + DEGREE);
         data->tmp_p_mouse = data->mouse_position.x;
         // printf("x_------>%d\n", x_);
 		// printf("angle = %f\n", data->player.angle);
 	}
-	if ((mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || data->tmp_p_mouse >= data->mouse_position.x + 20))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT)
+	if ((mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || data->tmp_p_mouse >= data->mouse_position.x + 12))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT)
 	{
 		data->player.angle = ft_normalizer(data->player.angle - DEGREE);
         data->tmp_p_mouse = data->mouse_position.x;
