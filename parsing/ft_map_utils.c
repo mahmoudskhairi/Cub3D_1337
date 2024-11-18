@@ -6,7 +6,7 @@
 /*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:51:30 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/03 12:24:43 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:16:36 by mskhairi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,28 @@ t_coor set_pov(t_coor coor, char c)
 	return (pov);
 }
 
-void	set_angle(t_player *player, char c)
+void	set_angle(t_data *data, t_player *player, char c)
 {
 	if (c == 'N')
+	{
 		player->angle = 270 * M_PI / 180;
+		data->first_player_angle = 270 * M_PI / 180;
+	}
 	if (c == 'S')
+	{
 		player->angle = 90 * M_PI / 180;
+		data->first_player_angle = 90 * M_PI / 180;
+	}
 	if (c == 'E')
+	{
 		player->angle = 0.0;
+		data->first_player_angle = 0.0;
+	}
 	if (c == 'W')
+	{
 		player->angle = M_PI;
+		data->first_player_angle = M_PI;
+	}
 }
 
 
@@ -65,7 +77,7 @@ int	check_player(t_data *data, char **map)
 			{
 				data->player.coor.x = x * TILE_SIZE + TILE_SIZE / 2;// put the player in the center of box
 				data->player.coor.y = y * TILE_SIZE + TILE_SIZE / 2;
-				set_angle(&data->player, map[y][x]);
+				set_angle(data, &data->player, map[y][x]);
 				nb++;
 			}
 			x++;

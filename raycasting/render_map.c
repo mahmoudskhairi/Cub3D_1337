@@ -6,7 +6,7 @@
 /*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 13:34:44 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/18 10:58:58 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:11:58 by mskhairi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void render_background(t_data *data)
 void	cast_rays(t_data *data)
 {
     render_background(data);
-	mini_map(data);
 	projection_3D(data);
+	mini_map(data);
 }
