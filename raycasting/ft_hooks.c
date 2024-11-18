@@ -6,7 +6,7 @@
 /*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:06:49 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/17 18:49:16 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:09:35 by mskhairi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ int	collision_detected(t_map map, t_coor p_coor)
 	return (0);
 }
 
-void	key(void *dataa)
+void	key(t_data *data)
 {
-	t_data *data;
-
-	data = (t_data *)dataa;
 	t_coor next;
-
 	next = data->player.coor;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+    mlx_get_mouse_pos(data->mlx, &data->mouse_position.x, &data->mouse_position.y);
+	if ((mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || data->tmp_p_mouse <= data->mouse_position.x - 20))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT) 
 	{
 		data->player.angle = ft_normalizer(data->player.angle + DEGREE);
+        data->tmp_p_mouse = data->mouse_position.x;
+        // printf("x_------>%d\n", x_);
 		// printf("angle = %f\n", data->player.angle);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	if ((mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || data->tmp_p_mouse >= data->mouse_position.x + 20))//(data->mouse_position.x >=0 && data->mouse_position.x <= WIDTH) && (data->mouse_position.y >=0 && data->mouse_position.y <= HEIGHT)
 	{
 		data->player.angle = ft_normalizer(data->player.angle - DEGREE);
+        data->tmp_p_mouse = data->mouse_position.x;
 		// printf("angle = %f\n", data->player.angle);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) || mlx_is_key_down(data->mlx, MLX_KEY_UP))
@@ -75,7 +75,6 @@ void	key(void *dataa)
 void	ft_loop(void *dataa)
 {
 	t_data *data;
-
 	data = (t_data *) dataa;
 	cast_rays(data);
 	key(dataa);

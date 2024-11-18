@@ -6,7 +6,7 @@
 /*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 13:31:30 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/14 18:28:23 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:53:15 by mskhairi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	init_mlx_elements(t_data *data)
 		printf("heeeeey\n");
 		exit(EXIT_FAILURE);
 	}
+    mlx_get_mouse_pos(data->mlx, &data->mouse_position.x, &data->mouse_position.y);
+    data->tmp_p_mouse = data->mouse_position.x;
 }
 
 double ft_normalizer(double angle)
