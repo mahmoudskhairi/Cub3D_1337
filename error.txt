@@ -1,0 +1,53 @@
+=================================================================
+==16050==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x604000002832 at pc 0x0001090cc5c4 bp 0x7ffee6b60080 sp 0x7ffee6b60078
+READ of size 1 at 0x604000002832 thread T0
+    #0 0x1090cc5c3 in mini_map (cub3D:x86_64+0x10002d5c3)
+    #1 0x1090c96e6 in cast_rays (cub3D:x86_64+0x10002a6e6)
+    #2 0x1090ca07d in ft_loop (cub3D:x86_64+0x10002b07d)
+    #3 0x1090a29e5 in mlx_loop (cub3D:x86_64+0x1000039e5)
+    #4 0x1090c8816 in main (cub3D:x86_64+0x100029816)
+    #5 0x7fff6aa90cc8 in start (libdyld.dylib:x86_64+0x1acc8)
+
+0x604000002832 is located 0 bytes to the right of 34-byte region [0x604000002810,0x604000002832)
+allocated by thread T0 here:
+    #0 0x109176793 in wrap_malloc (libclang_rt.asan_osx_dynamic.dylib:x86_64h+0x61793)
+    #1 0x1090c70fd in ft_calloc (cub3D:x86_64+0x1000280fd)
+    #2 0x1090ceb01 in fill_map (cub3D:x86_64+0x10002fb01)
+    #3 0x1090cc837 in check_requirements (cub3D:x86_64+0x10002d837)
+    #4 0x1090c87b8 in main (cub3D:x86_64+0x1000297b8)
+    #5 0x7fff6aa90cc8 in start (libdyld.dylib:x86_64+0x1acc8)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (cub3D:x86_64+0x10002d5c3) in mini_map
+Shadow bytes around the buggy address:
+  0x1c08000004b0: fa fa fd fd fd fd fd fd fa fa fd fd fd fd fd fd
+  0x1c08000004c0: fa fa fd fd fd fd fd fd fa fa fd fd fd fd fd fd
+  0x1c08000004d0: fa fa 00 00 00 00 00 04 fa fa fd fd fd fd fd fd
+  0x1c08000004e0: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+  0x1c08000004f0: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+=>0x1c0800000500: fa fa 00 00 00 00[02]fa fa fa 00 00 00 00 02 fa
+  0x1c0800000510: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+  0x1c0800000520: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+  0x1c0800000530: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+  0x1c0800000540: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 02 fa
+  0x1c0800000550: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==16050==ABORTING

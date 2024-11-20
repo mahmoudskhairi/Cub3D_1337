@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:54:40 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/18 12:58:02 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:46:57 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include <stdio.h> // for testing
 #include <fcntl.h>
 #include <math.h>
-#include "MLX42/include/MLX42/MLX42.h"
-#include "src/libft/libft.h"
+#include "utils/MLX42/include/MLX42/MLX42.h"
+#include "utils/libft/libft.h"
 
 #define TILE_SIZE  24
 #define MINI_HEIGHT TILE_SIZE * 10
@@ -36,11 +36,10 @@
 #define HEIGHT 1000
 
 #define RAD M_PI / 180 // one radian
-#define DEGREE 5 * M_PI / 180
-#define	SPEED 2
-// #define RES 
+#define DEGREE 2 * M_PI / 180
+#define	SPEED 1
 
-#define N_RAYS 1600
+#define N_RAYS WIDTH
 
 #define FOV DEGREE_60
 
@@ -67,7 +66,7 @@ typedef struct s_player
 {
 	t_coor		coor;// coordinates of player with pixels
 	double		angle;// angle of player
-	double		rotate_speed; 
+	double		rotate_speed;
 	double		move_speed; 
 	
 }	t_player;
@@ -110,6 +109,7 @@ typedef	struct s_ray
 	double top;
 	double bottom;
 	int flag;
+	// add ray angle here
 }	t_ray;
 
 typedef struct s_data
@@ -126,15 +126,15 @@ typedef struct s_data
 	mlx_image_t	*ft_3D;// image of 3d vue
 	t_ray		*rays;
 	double  x_projection;
-	mlx_texture_t *texture_img1;
-	mlx_texture_t *texture_img2;
-	mlx_texture_t *texture_img3;
-	mlx_texture_t *texture_img4;
+	mlx_texture_t *texture_img1;// delete it later
+	mlx_texture_t *texture_img2;// delete it later
+	mlx_texture_t *texture_img3;// delete it later
+	mlx_texture_t *texture_img4;// delete it later
 	mlx_image_t *img1;
 	mlx_image_t *img2;
 	mlx_image_t *img3;
 	mlx_image_t *img4;
-	double first_player_angle;
+	double first_player_angle;// check it later
 }	t_data;
 
 

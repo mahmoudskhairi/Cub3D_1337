@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskhairi <mskhairi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmarzouk <rmarzouk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:54:43 by rmarzouk          #+#    #+#             */
-/*   Updated: 2024/11/18 17:49:42 by mskhairi         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:40:34 by rmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,19 @@ void	clean_all(t_data *data)
 	free(data->textures.SO);
 	free(data->textures.WE);
 	free(data->textures.EA);
-	// system("leaks cub3D");
+	mlx_terminate(data->mlx);
+	// system("leaks cub3D");// first time
 }
 
 int main(int ac, char **av)
 {
 	t_data data;
 
-	// atexit(ll);
+	atexit(ll);
 	check_requirements(ac, av,&data);
 	init_mlx_elements(&data);
+	
 	mlx_loop_hook(data.mlx, ft_loop, &data);
-    // mlx_mouse_hook(data.mlx, (mlx_mousefunc)ft_loop, NULL);
-	printf("---->%s\n", data.textures.NO);
-	printf("---->%s\n", data.textures.SO);
-	printf("---->%s\n", data.textures.EA);
-	printf("---->%s\n", data.textures.WE);
-
 	mlx_loop(data.mlx);
 	clean_all(&data);
 }
